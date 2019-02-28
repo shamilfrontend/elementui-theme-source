@@ -1,0 +1,68 @@
+@import "mixins/mixins";
+@import "common/var";
+@import "./popper";
+
+@include b(popover) {
+  position: absolute;
+  background: $--popover-fill;
+  min-width: 150px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  padding: $--popover-padding;
+  z-index: $--index-popper;
+  color: $--color-text-regular;
+  line-height: 1.4;
+  outline: none;
+  font-size: $--popover-font-size;
+  box-shadow: $--box-shadow-light;
+
+  // custom style
+  max-width: 295px;
+  text-align: left;
+  margin-top: -32px;
+  transform: translateX(-23px) translateY(48%);
+  &::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    background-image: url(/static/i/icons/tool-tip-on-click.svg);
+    background-repeat: no-repeat;
+  }
+  // custom style end
+
+  @include m(plain) {
+    padding: $--popover-padding-large;
+  }
+
+  @include e(title) {
+    color: $--popover-title-color;
+    font-size: $--popover-title-font-size;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  @include e(reference) {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(/static/i/hint-active.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 16px -3px;
+    vertical-align: text-top;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    &:focus:not(.focusing), &:focus:hover {
+      outline-width: 0;
+    }
+  }
+
+  &:focus:active, &:focus {
+    outline-width: 0;
+  }
+}
